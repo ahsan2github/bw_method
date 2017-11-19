@@ -76,7 +76,8 @@ def calc_weight(compared2best, compared2worst):
     bub = np.zeros((rowSize-1), dtype=np.double);
     cc = np.zeros((colSize+1), dtype=np.double)
     cc[-1] = 1; 
-    res = linprog(cc, A_eq=Aeq, b_eq=beq, A_ub=mat, b_ub=bub, bounds=(0, None), options={"disp": False});
+    res = linprog(cc, A_eq=Aeq, b_eq=beq, A_ub=mat, b_ub=bub, \
+                  bounds=(0, None), options={"disp": False});
     sol1 = res['x'];
     outp = dict();
     ii = 0;
