@@ -83,7 +83,7 @@ def calc_weight(compared2best, compared2worst):
     ii = 0;
     for x in allkeys:
         outp[x] = np.asscalar(sol1[ii]);    
-        ii = ii+1;
+        ii += 1;
     return((outp, np.asscalar(sol1[-1])))
    
 #==========================================================================================
