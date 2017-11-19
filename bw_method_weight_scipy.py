@@ -70,9 +70,6 @@ def calc_weight(compared2best, compared2worst):
         tmpmat1[idx, wloc] = cw_copy[list(cw_copy.keys())[idx]];
         tmpmat1[idx, colSize] = -1.0;
     mat[2*colSize-2:,:] = np.concatenate((tmpmat, tmpmat1), axis=0);
-#-------------------------------------------------------------------------------------
-#    mat[rowSize-1, 0:colSize] = -1; 
-#-------------------------------------------------------------------------------------
     Aeq = np.ones((1, colSize+1), dtype=np.double);
     Aeq[0,-1] = 0.;
     beq = np.array([1]); 
