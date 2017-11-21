@@ -8,7 +8,10 @@ routine. This function accepts two dictionaries as inputs. One dictionary contai
 the names of the parameters and corresponding scores compared to the BEST parameter.
 The other dictionary similarly contains names of the parameters, and corresponding scores 
 compared to the WORST parameter. This function does not check for input accuracy/consistency.
-This is just a prototype.
+It outputs the calculated wight of each parameter as the first element of the tuple 
+and return the weights in a dictionary in the form {parameter: weight}. The second element
+of the tuple is the consistency index. 
+ || This is just a prototype ||
 '''
 #==========================================================================================
 from scipy.optimize import linprog
