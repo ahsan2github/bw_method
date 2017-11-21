@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #==========================================================================================
+'''
+Author: Ahsan Khan
+This is simple function that generates the matrices required to be solved in the
+Best Worst method and then solves the linear optimization problem using scipy linprog 
+routine. This function accepts two dictionaries as inputs. One dictionary contains
+the names of the parameters and corresponding scores compared to the BEST parameter.
+The other dictionary similarly contains names of the parameters, and corresponding scores 
+compared to the WORST parameter. This function does not check for input accuracy/consistency.
+This is just a prototype.
+'''
 #==========================================================================================
 from scipy.optimize import linprog
 import numpy as np
@@ -19,14 +29,10 @@ def calc_weight(compared2best, compared2worst):
     wloc = 0; wkey='';
     #print(allkeys)
     # get the best criteria location
-    for  keyy, vall in cb.items():
-        if vall == 1:
-            bkey = keyy;
+    bkey =  min(compared2best, key=compared2best.get);
     bloc = allkeys.index(bkey);
     # get the worst criteria location
-    for  keyy, vall in cw.items():
-        if vall == 1:
-            wkey = keyy;
+    wkey = min(compared2worst, key=compared2worst.get);
     wloc = allkeys.index(wkey);
     cb_copy = cb.copy();
     '''delete the key corresponding to best critreia.
@@ -70,7 +76,6 @@ def calc_weight(compared2best, compared2worst):
         tmpmat1[idx, wloc] = cw_copy[list(cw_copy.keys())[idx]];
         tmpmat1[idx, colSize] = -1.0;
     mat[2*colSize-2:,:] = np.concatenate((tmpmat, tmpmat1), axis=0);
-#----------------------------------------------------------------------------------------    
     Aeq = np.ones((1, colSize+1), dtype=np.double);
     Aeq[0,-1] = 0.;
     beq = np.array([1]); 
